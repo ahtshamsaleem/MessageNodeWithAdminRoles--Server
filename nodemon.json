@@ -1,0 +1,9 @@
+{
+    "env": {
+        "MONGO_USERNAME": "ahtsham",
+        "MONGO_PASSWORD": "root123",
+        "MONDO_DATABASE": "messages",
+
+        "JWT_SECRET": "secret"
+    }
+}
