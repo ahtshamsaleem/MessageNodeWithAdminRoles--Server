@@ -6,6 +6,7 @@ const multerImageUpload = require('./utils/multerImageUpload');
 
 const feedRoutes = require('./routes/feed');
 const authRoutes = require('./routes/auth');
+const adminRoutes = require('./routes/admin')
 
 
 const app = express();
@@ -33,6 +34,7 @@ app.use((req, res, next) => {
 
 app.use('/feed', feedRoutes);
 app.use(authRoutes);
+app.use(adminRoutes);
 
 app.use((error, req, res, next) => {
     const status = error.statusCode || 500;
@@ -42,13 +44,33 @@ app.use((error, req, res, next) => {
 });
 
 
+// mongoose
+//     .connect(
+//         `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@ac-aro5a2z-shard-00-00.fpjtbus.mongodb.net:27017,ac-aro5a2z-shard-00-01.fpjtbus.mongodb.net:27017,ac-aro5a2z-shard-00-02.fpjtbus.mongodb.net:27017/${process.env.MONGO_DATABASE}?replicaSet=atlas-144o5k-shard-0&ssl=true&authSource=admin`,
+//         { useNewUrlParser: true, useUnifiedTopology: true }
+//     )
+//     .then((result) => {
+//         console.log('connected to db');
+//         app.listen(process.env.NODE_ENV || 8080);
+//     })
+//     .catch((err) => console.log(err));
+
+
+
+
 mongoose
     .connect(
-        `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@ac-aro5a2z-shard-00-00.fpjtbus.mongodb.net:27017,ac-aro5a2z-shard-00-01.fpjtbus.mongodb.net:27017,ac-aro5a2z-shard-00-02.fpjtbus.mongodb.net:27017/${process.env.MONGO_DATABASE}?replicaSet=atlas-144o5k-shard-0&ssl=true&authSource=admin`,
-        { useNewUrlParser: true, useUnifiedTopology: true }
+        `mongodb+srv://ahtsham:root123@cluster0.fpjtbus.mongodb.net/messages`
     )
     .then((result) => {
         console.log('connected to db');
-        app.listen(process.env.NODE_ENV || 8080);
+        app.listen(process.env.PORT || 8080);
     })
     .catch((err) => console.log(err));
+
+
+
+    
+
+
+    // `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0-ntrwp.mongodb.net/messages?retryWrites=true`

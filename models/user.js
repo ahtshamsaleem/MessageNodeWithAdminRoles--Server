@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "I am new User"
     },
+    role: {
+        type: String,
+        default: 'client'
+    },
     posts: [
         {
             type: mongoose.Schema.Types.ObjectId,
